@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8" />
+<title>Tarefa</title>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<link
+	href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700'
+	rel='stylesheet' type='text/css' />
+<link rel="stylesheet" type="text/css" href="/css/normalizeCSS.css" />
+<link rel="stylesheet" type="text/css" href="/css/estilo.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+</head>
+
+<body class="edit">
+	<div>
+		<h3 class="edittask">Editar Tarefa</h3>
+		<h4>Nome da Lista:</h4>
+		<h4 class="name" data-th-text="${lista.name}"></h4>
+	</div>
+
+	<div>
+		<td><a th:href="@{'/newList/create/{id}' (id=${lista.id})}">
+				Voltar</a></td>
+	</div>
+
+	<div class="edit-task">
+		<form method="post" name="comment_form" id="form" action="/taskUpdate">
+			<div class="form">
+				<textarea type="text" id="titulo" name="titulo"
+					th:text="${task.title}"></textarea>
+				<div class="select">
+					<select name="prioridade" class="option">
+						<option value="Alta">Alta</option>
+						<option value="Media">Média</option>
+						<option value="Baixa">Baixa</option>
+					</select> <select name="categoria" class="option">
+						<option value="Estudo">Estudo</option>
+						<option value="Casa">Casa</option>
+						<option value="Final de semana">Final de semana</option>
+					</select>
+				</div>
+				<textarea rows="5" class="form-control" id="descricao"
+					name="descricao" th:text="${task.description}"></textarea>
+			</div>
+			<input type="hidden" id="task_id" rows="5" class="form-control"
+				name="task_id" th:value="${task.id}" /> <input type="hidden"
+				id="lista_id" rows="5" class="form-control" name="lista_id"
+				th:value="${lista.id}" />
+
+			<button type="submit" id="submit-add" class="btn btn-primary">Editar</button>
+		</form>
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8" />
+<title>Tarefa</title>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<link
+	href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700'
+	rel='stylesheet' type='text/css' />
+<link rel="stylesheet" type="text/css" href="/css/normalizeCSS.css" />
+<link rel="stylesheet" type="text/css" href="/css/estilo.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+</head>
+
+<body class="addTask">
+	<div>
+		<h1 class="name-list" data-th-text="${lista.name}"></h1>
+	</div>
+
+	<div>
+		<td><a th:href="@{'/'}"> Voltar</a></td>
+	</div>
+
+	<div class="create-task">
+		<form method="post" name="comment_form" id="form"
+			action="/list/newTask">
+			<div class="form">
+				<input type="text" id="titulo" name="titulo" placeholder="Name" />
+				<select name="prioridade" class="option">
+					<option value="Alta">Alta</option>
+					<option value="Media">Média</option>
+					<option value="Baixa">Baixa</option>
+				</select> <select name="categoria" class="option" id="option-category">
+					<option value="Estudo">Estudo</option>
+					<option value="Casa">Casa</option>
+					<option value="Final de semana">Final de semana</option>
+				</select>
+				<textarea rows="5" class="form-control" id="descricao"
+					name="descricao" placeholder="Descrição"></textarea>
+			</div>
+			<input type="hidden" id="lista_id" rows="5" class="form-control"
+				name="lista_id" th:value="${lista.id}" />
+
+			<button type="submit" id="submit-add" class="btn btn-primary">Submit</button>
+		</form>
+
+	</div>
+	<div>
+	<div class="order">
+		<h1>Ordenar por:</h1>
+		<div class="order-name">
+			<div class="order-name-crescent">
+				<form action="/orderTaskNameCrescent" method="get" name="orderName"
+					id="orderName">
+					<input type="hidden" id="lista_id" rows="5" class="form-control"
+						name="lista_id" th:value="${lista.id}" />
+					<button type="submit" id="submit" class="btn btn-primary">Nome
+						Crescente</button>
+				</form>
+			</div>
+			<div class="order-name-decrescent">
+				<form action="/orderTaskNameDecrescent" method="get"
+					name="orderName" id="orderName">
+					<input type="hidden" id="lista_id" rows="5" class="form-control"
+						name="lista_id" th:value="${lista.id}" />
+					<button type="submit" id="submit" class="btn btn-primary">Nome
+						Decrescente</button>
+				</form>
+			</div>
+		</div>
+		<div class="order-priority">
+			<div class="order-priority-high">
+				<form action="/orderPriorityHigh" method="get" name="orderPriority"
+					id="orderPriority">
+					<input type="hidden" id="lista_id" rows="5" class="form-control"
+						name="lista_id" th:value="${lista.id}" />
+					<button type="submit" id="submit_order" class="btn btn-primary">Prioridade
+						Alta</button>
+				</form>
+			</div>
+			<div class="order-priority-low">
+				<form action="/orderPriorityLow" method="get" name="orderPriority"
+					id="orderPriority">
+					<input type="hidden" id="lista_id" rows="5" class="form-control"
+						name="lista_id" th:value="${lista.id}" />
+					<button type="submit" id="submit_order" class="btn btn-primary">Prioridade
+						Baixa</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div class="tasktodo">
+		<div class="task-to-do">
+			<table class="table table-striped" id="task-to-do">
+				<tbody>
+					<tr data-th-each="list : ${nameTask}">
+
+						<td class="titulo" data-th-text="${list.title}"></td>
+						<td class="descricao" data-th-text="${list.description}"></td>
+						<td class="prioridade" data-th-text="${list.priority}"></td>
+						<td class="categoria" data-th-text="${list.category}"></td>
+						<td><a
+							th:href="@{'/list/{id}/taskCompleted/{idTask}'(id=${lista.id}, 
+						idTask=${list.id})}"
+							class="completed" th:attr="name=${list.title}"> <span
+								class="fa-stack"> <i class="glyphicon glyphicon-ok"></i>
+							</span>
+						</a></td>
+						<td><a
+							th:href="@{'/list/{id}/edit/task/{idTask}'(id=${lista.id}, 
+		                idTask=${list.id})}"
+							class="edit" th:attr="name=${list.title}"> <span
+								class="fa-stack"> <i class="glyphicon glyphicon-edit"></i>
+							</span>
+						</a> </td>
+						<td><a
+							th:href="@{'/list/{id}/remove/task/{idTask}'(id=${lista.id}, 
+		                idTask=${list.id})}"
+							class="remove" th:attr="name=${list.title}"> <span
+								class="fa-stack"> <i class="glyphicon glyphicon-remove"></i>
+							</span>
+						</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="remove-all-to-do">
+			<form action="/removeAllTaskToDo" method="get" name="removeAllTask"
+				id="removeAllTask">
+				<input type="hidden" id="lista_id" rows="5" class="form-control"
+					name="lista_id" th:value="${lista.id}" />
+				<button type="submit" id="submit" class="btn btn-primary">Remover
+					todas as tarefas</button>
+			</form>
+		</div>
+	</div>
+	<div class="taskcompleted">
+		<div class="task-completed">
+			<table class="table table-striped" id="task-completed">
+				<tbody>
+					<tr data-th-each="list : ${taskComplet}">
+
+						<td class="titulo" data-th-text="${list.title}"></td>
+						<td class="descricao" data-th-text="${list.description}"></td>
+						<td class="prioridade" data-th-text="${list.priority}"></td>
+						<td class="categoria" data-th-text="${list.category}"></td>
+
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="remove-all-completed">
+			<form action="/removeAllTaskCompleted" method="get"
+				name="removeAllTask" id="removeAllTask">
+				<input type="hidden" id="lista_id" rows="5" class="form-control"
+					name="lista_id" th:value="${lista.id}" />
+				<button type="submit" id="submit" class="btn btn-primary">Remover
+					todas as tarefas</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

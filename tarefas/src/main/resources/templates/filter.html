@@ -1,0 +1,26 @@
+<html layout:decorator="layout"
+	xmlns:layout="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.w3.org/1999/xhtml">
+
+<body class="filter">
+	<div layout:fragment="content">
+		
+		<h1 class="type" data-th-text="${typeFilter}"></h1>
+		<div class="totalTarefas">
+			<h4>Total de tarefas: </h4>
+			<h4 class="type" data-th-text="${quantToDo + quantCompleted}"></h4>
+		</div>
+		<div class="tarefas-fazer">
+			<h4>A Fazer:</h4>
+			<h4 class="type" data-th-text="${quantToDo}"></h4>
+		</div>
+		<div class="tarefas-completas">
+			<h4>Completas: </h4>
+			<h4 class="type" data-th-text="${quantCompleted}"></h4>
+		</div>
+		<div>
+			<td><a th:href="@{'/'}"> Voltar</a></td>
+		</div>
+	</div>
+</body>
+</html>

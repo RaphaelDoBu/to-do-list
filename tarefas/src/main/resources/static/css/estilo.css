@@ -1,0 +1,275 @@
+body {
+	font-family: 'Roboto', sans-serif;
+	color: #333;
+	height: 700px;
+	margin: 0 auto;
+	overflow: auto;
+}
+
+h1.top {
+	text-align: center;
+}
+
+nav .menu {
+	width: 960px;
+	margin: 0 auto;
+	overflow: auto;
+}
+
+.header {
+	width: inherit;
+	margin: 0 auto;
+	overflow: auto;
+}
+
+.form {
+	width: 500px;
+	height: 40px;
+	float: left;
+}
+
+.list {
+	width: 960px;
+	min-height: 200px;
+	padding-top: 15px;
+	position: absolute;
+	z-index: 9999;
+}
+
+.listTask {
+	width: 960px;
+	min-height: 400px;
+	margin: 0 auto;
+	overflow: auto;
+}
+
+.bem-vindo {
+	width: 960px;
+	height: 30px;
+	text-align: center;
+	padding-top: 67px;
+	margin: 0 auto;
+}
+
+#submit-menu {
+	margin-left: 5px;
+}
+
+.links {
+	float: right;
+	height: 50px;
+	width: 400px;
+}
+
+.form-control {
+	height: inherit;
+	width: 380px;
+	display: inline;
+}
+
+ul li {
+	list-style: none;
+	display: inline;
+	float: right;
+	margin-top: 10px;
+	padding-right: 14px;
+}
+
+h4 {
+	display: inline;
+}
+
+.filter-priority h4, .filter-category h4 {
+	font-size: 14px;
+}
+
+.filter-priority {
+	width: 630px;
+	float: left;
+	padding-bottom: 10px;
+	margin-left: 45px;
+}
+
+.priority {
+	text-align: right;
+	margin-top: 30px;
+}
+
+.filter-category {
+	width: 920px;
+	position: relative;
+	margin-left: 25px;
+}
+
+.category {
+	margin-top: 30px;
+	float: right;
+}
+
+#filter {
+	margin-right: 5px;
+}
+
+.totalTarefas h1, .tarefas-fazer h1, .tarefas-completas h1 {
+	display: inline;
+}
+
+.totalTarefas, .tarefas-fazer, .tarefas-completas {
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+
+.name-list {
+	text-align: center;
+	padding-bottom: 10px;
+}
+
+.create-task {
+	width: 450px;
+	height: 200px;
+	padding-top: 10px;
+	padding-left: 25px;
+	float: left;
+}
+
+
+body.addTask, body.edit, body.filter{
+	width: 960px;
+	margin: 0 auto;
+	overflow: auto;
+}
+
+#titulo {
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.option {
+	margin-left: 5px;
+}
+
+#option-category {
+	width: 120px;
+}
+
+#titulo {
+	width: 180px;
+}
+
+#submit-add {
+	width: 84%;
+	margin-top: 130px;
+	margin-left: 3px;
+}
+
+.order {
+	width: 400px;
+	height: 230px;
+	float: right;
+}
+
+.order-name-crescent, .order-priority-high {
+	width: 200px;
+	float: left;
+	padding-left: 15px;
+	margin-bottom: 10px
+}
+
+.order-name-decrescent, .order-priority-low {
+	width: 200px;
+	float: right;
+	padding-left: 15px;
+	margin-bottom: 10px
+}
+
+.order-priority {
+	width: 400px;
+}
+
+#submit_order {
+	padding-right: 25px;
+}
+
+#submit-filter {
+	padding: 3px 6px;
+}
+
+.tasktodo {
+	width: 450px;
+	float: left;
+	padding-top: 30px;
+	padding-left: 25px;
+}
+
+.taskcompleted {
+	width: 450px;
+	float: right;
+}
+
+.task-to-do {
+	width: 450px;
+	min-height: 300px;
+	float: left;
+	overflow: auto;
+}
+
+.remove-all-to-do {
+	width: 450px;
+	height: 50px;
+	margin-left: 120px;
+	float: left;
+}
+
+.task-completed {
+	width: 450px;
+	min-height: 300px;
+	float: right;
+	overflow: auto;
+}
+
+.remove-all-completed {
+	width: 40px;
+	height: 50px;
+	margin-right: 230px;
+	float: right;
+}
+
+h3.edittask {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.edit-task {
+	width: 740px;
+	height: 200px;
+	padding-top: 40px;
+	padding-left: 30%;
+}
+
+#descricao {
+	width: 380px;
+	height: 131px;
+	resize: none;
+	margin-top: 5px;
+}
+
+.edit-task #submit-add {
+	margin-top: 140px;
+}
+
+.form #titulo {
+	width: 170px;
+	height: 27px;
+	resize: none;
+}
+
+.select {
+	float: right;
+	margin-right: 120px;
+	margin-top: 4px;
+}
+
+.container {
+	padding-left: 0;
+	padding-bottom: 5px;
+}

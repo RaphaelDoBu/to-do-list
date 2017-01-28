@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html ng-app="app" lang="en" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8" />
+<title>To do list</title>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<link
+	href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700'
+	rel='stylesheet' type='text/css' />
+<link rel="stylesheet" type="text/css" href="/css/normalizeCSS.css" />
+<link rel="stylesheet" type="text/css" href="/css/estilo.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+</head>
+<body>
+	<div class="header">
+		<header>
+			<h1 class="top">To do list</h1>
+			<nav>
+				<div class="menu">
+
+					<div class="form">
+						<form method="post" name="comment_form" id="form"
+							action="/newList/create">
+							<div class="form">
+								<input type="text" class="form-control" id="name" name="name" />
+								<button type="submit" id="submit-menu" class="btn btn-primary">Add
+									Lista</button>
+							</div>
+						</form>
+					</div>
+
+					<div class="links">
+						<ul>
+							<li><a href="https://github.com/RaphaelDoBu/Lab02"
+								target="_blanck">Github</a></li>
+							<li><a
+								href="https://drive.google.com/drive/folders/0B_vLfIWC1toKNlFvYWJBRzVVckE?usp=sharing"
+								target="_blanck">Vídeo explicativo</a></li>
+						</ul>
+					</div>
+
+				</div>
+			</nav>
+		</header>
+	</div>
+	<div class="container">
+		<div class="filter-priority">
+			<form action="/list/filterPriority" method="get" name="priority"
+				id="priority">
+				<div class="priority">
+					<h4>Prioridade</h4>
+					<select name="filter" id="filter">
+						<option value="Alta">Alta</option>
+						<option value="Media">Média</option>
+						<option value="Baixa">Baixa</option>
+					</select>
+
+					<button type="submit" id="submit-filter" class="btn btn-primary">Filtrar</button>
+				</div>
+			</form>
+		</div>
+
+		<div class="filter-category">
+			<form action="/list/filterCategory" method="get" name="category"
+				id="category">
+				<div class="category">
+					<h4>Categoria</h4>
+					<select name="filter" id="filter">
+						<option value="Estudo">Estudo</option>
+						<option value="Casa">Casa</option>
+						<option value="Final de semana">Final de semana</option>
+					</select>
+
+					<button type="submit" id="submit-filter" class="btn btn-primary">Filtrar</button>
+				</div>
+			</form>
+		</div>
+
+
+	</div>
+	<div layout:fragment="content"></div>
+</body>
+</html>
