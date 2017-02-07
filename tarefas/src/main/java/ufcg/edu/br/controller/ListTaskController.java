@@ -17,13 +17,14 @@ import ufcg.edu.br.domain.ListTask;
 import ufcg.edu.br.domain.Task;
 import ufcg.edu.br.repositories.ListTaskRepository;
 import ufcg.edu.br.repositories.TaskRepository;
+import ufcg.edu.br.services.ListTaskServiceImpl;
 import ufcg.edu.br.services.TaskServiceImpl;
 
 @Controller
 @Transactional
 public class ListTaskController {
 	@Autowired
-	private TaskRepository taskRepository;
+	private ListTaskServiceImpl listTaskServiceImpl;
 	@Autowired
 	private ListTaskRepository listTaskRepository;
 	@Autowired
@@ -37,9 +38,7 @@ public class ListTaskController {
 
 	@RequestMapping(value = "/newList/create", method = RequestMethod.POST)
 	public ModelAndView createList(@RequestParam("name") String name) {
-		ListTask listaName = new ListTask();
-		listaName.setNome(name);
-		listTaskRepository.save(listaName);
+		listTaskServiceImpl.createListTask(name);
 		return new ModelAndView("redirect:/");
 	}
 

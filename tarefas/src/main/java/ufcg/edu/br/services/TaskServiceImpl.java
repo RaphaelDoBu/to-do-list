@@ -14,15 +14,20 @@ import ufcg.edu.br.repositories.ListTaskRepository;
 import ufcg.edu.br.repositories.SubTaskRepository;
 import ufcg.edu.br.repositories.TaskRepository;
 
-@Service("listNameService")
+@Service("taskService")
 public class TaskServiceImpl implements TaskService{
 
 	@Autowired
 	private ListTaskRepository listTaskRepository;
 	@Autowired
 	private TaskRepository taskRepository;
-	@Autowired
-	private SubTaskRepository subTaskRepository;
+	
+	@Override
+	public void newTask(Task task, Long id) {
+		taskRepository.save(task);
+		ListTask listaName = listTaskRepository.findOne(id);
+		listaName.getListTaskToDo().add(task);
+	}
 	
 	@Override
 	public int filterToDo(String filter, String typeFilter) {
@@ -142,5 +147,5 @@ public class TaskServiceImpl implements TaskService{
 			listTaskRepository.delete(listT);
 		}
 	}
-	
+
 }

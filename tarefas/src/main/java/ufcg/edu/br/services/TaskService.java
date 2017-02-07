@@ -7,6 +7,7 @@ import ufcg.edu.br.domain.Task;
 
 public interface TaskService {
 	
+	void newTask(Task task, Long id);
 	int filterToDo(String filter, String typeFilter);
 	int filterCompleted(String filter, String typeFilter);
 	Task taskToDoForCompleted(Long id, Long idTask);

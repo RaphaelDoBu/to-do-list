@@ -42,9 +42,7 @@ public class TaskController {
 			@RequestParam("descricao") String descricao, @RequestParam("prioridade") String prioridade,
 			@RequestParam("categoria") String categoria, Model model) {
 		Task task = new Task(titulo, descricao, prioridade, categoria);
-		taskRepository.save(task);
-		ListTask listaName = listTaskRepository.findOne(id);
-		listaName.getListTaskToDo().add(task);
+		taskServiceImpl.newTask(task, id);
 		return new ModelAndView("redirect:/newList/create/" + id);
 	}
 
