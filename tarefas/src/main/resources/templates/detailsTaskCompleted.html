@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8" />
+<title>Detalhes</title>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<link
+	href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700'
+	rel='stylesheet' type='text/css' />
+<link rel="stylesheet" type="text/css" href="/css/normalizeCSS.css" />
+<link rel="stylesheet" type="text/css" href="/css/estilo.css" />
+<script type="text/javascript" src="static/app.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+</head>
+
+<body class="detalhes">
+
+	<div class="topDetalhes">
+		<div class="voltar">
+			<td><a th:href="@{'/newList/create/{id}' (id=${idList})}">
+					Voltar</a></td>
+		</div>
+		<div class="nameDetalhes">
+			<h2>Detalhes da tarefa completa</h2>
+		</div>
+	</div>
+	<div class="taskCompleted">
+		<h3>Tarefa:</h3>
+		<table class="table table-striped" id="table-subTask">
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th>Descrição</th>
+					<th>Prioridade</th>
+					<th>Categoria</th>
+				</tr>
+			</thead>
+			<tbody>
+				<td class="titulo" data-th-text="${task.title}"></td>
+				<td class="descricao" data-th-text="${task.description}"
+					width="100px"></td>
+				<td class="prioridade" data-th-text="${task.priority}" width="50px"></td>
+				<td class="categoria" data-th-text="${task.category}"></td>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="taskCompleted-subTask">
+		<div class="nameTask">
+			<h3>Sub-tarefas:</h3>
+		</div>
+
+		<div class="subTask-completed">
+			<table class="table table-striped" id="task-completed">
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>Descrição</th>
+					</tr>
+				</thead>
+				<tbody>
+					<th:block data-th-each="subtaskList: ${subTask}">
+						<tr style="text-decoration: line-through;
+						font-weight:bold; font-size: 15px;">
+							<td class="titulo" data-th-text="${subtaskList.title}"></td>
+							<td class="descricao" data-th-text="${subtaskList.description}"
+								width="100px"></td>
+						</tr>
+					</th:block>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</body>
+</html>

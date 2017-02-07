@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8" />
+<title>Detalhes</title>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<link
+	href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700'
+	rel='stylesheet' type='text/css' />
+<link rel="stylesheet" type="text/css" href="/css/normalizeCSS.css" />
+<link rel="stylesheet" type="text/css" href="/css/estilo.css" />
+<script type="text/javascript" src="static/app.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+</head>
+
+<body class="detalhes">
+	<div>
+		<div class="topDetalhes">
+			<div class="voltar">
+				<td><a th:href="@{'/newList/create/{id}' (id=${idList})}">
+						Voltar</a></td>
+			</div>
+			<div class="nameDetalhes">
+				<h2>Detalhes da tarefa a fazer</h2>
+			</div>
+		</div>
+	
+		<div class="taskDetalhes">
+			<table class="table table-striped" id="table-subTask">
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>Descrição</th>
+						<th>Prioridade</th>
+						<th>Categoria</th>
+					</tr>
+				</thead>
+				<tbody>
+					<td class="titulo" data-th-text="${task.title}"></td>
+					<td class="descricao" data-th-text="${task.description}"
+						width="100px"></td>
+					<td class="prioridade" data-th-text="${task.priority}" width="50px"></td>
+					<td class="categoria" data-th-text="${task.category}"></td>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="addSubTask">
+		<div class="create-subtask">
+			<h4>Adicionar subtarefas</h4>
+			<form method="post" name="comment_form" id="form"
+				action="/task/subtask">
+				<div class="form">
+					<input type="text" id="titulo" name="titulo" placeholder="Name" />
+					<textarea rows="5" class="form-control" id="descricaoCreate"
+						name="descricao" placeholder="Descrição"></textarea>
+				</div>
+				<input type="hidden" id="task_id" rows="5" class="form-control"
+					name="task_id" th:value="${task.id}" /> <input type="hidden"
+					id="lista_id" rows="5" class="form-control" name="lista_id"
+					th:value="${idList}" />
+				<button type="submit" id="submit-add" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+
+		<div class="tasktoDo-subTask">
+			<h3 class="nameTask">SubTarefas:</h3>
+			<div class="subTask">
+				<table class="table table-striped" id="task-completed">
+					<thead>
+						<tr>
+							<th>Nome</th>
+							<th>Descrição</th>
+							<th>Concluir sub-tarefa</th>
+							<th>Excluir</th>
+						</tr>
+					</thead>
+					<tbody>
+						<th:block data-th-each="subtaskList : ${subTask}">
+							<tr th:if="${subtaskList.marcado} == true"
+								style="text-decoration: line-through;
+								font-weight:bold; font-size: 17px;">
+								<td class="titulo" data-th-text="${subtaskList.title}"></td>
+								<td class="descricao" data-th-text="${subtaskList.description}"
+									width="100px"></td>
+								<td><a
+									th:href="@{'/list/{id}/taskToDo/{idTask}/subTaskCompleted/{idSubTask}'(id=${idList}, 
+						idTask=${task.id}, idSubTask=${subtaskList.id})}"
+									class="completed" th:attr="name=${subtaskList.title}"> <span
+										class="fa-stack"> <i class="glyphicon glyphicon-ok"></i>
+									</span>
+								</a></td>
+								<td><a
+									th:href="@{'/list/{id}/remove/taskToDo/{idTask}/subTask/{idSubTask}'(id=${idList}, 
+		                idTask=${task.id}, idSubTask=${subtaskList.id})}"
+									class="remove" th:attr="name=${subtaskList.title}"> <span
+										class="fa-stack"> <i class="glyphicon glyphicon-remove"></i>
+									</span>
+								</a></td>
+							</tr>
+							<tr th:if="${subtaskList.marcado} == false">
+								<td class="titulo" data-th-text="${subtaskList.title}"></td>
+								<td class="descricao" data-th-text="${subtaskList.description}"
+									width="100px"></td>
+								<td><a
+									th:href="@{'/list/{id}/taskToDo/{idTask}/subTaskCompleted/{idSubTask}'(id=${idList}, 
+						idTask=${task.id}, idSubTask=${subtaskList.id})}"
+									class="completed" th:attr="name=${subtaskList.title}"> <span
+										class="fa-stack"> <i class="glyphicon glyphicon-ok"></i>
+									</span>
+								</a></td>
+								<td><a
+									th:href="@{'/list/{id}/remove/taskToDo/{idTask}/subTask/{idSubTask}'(id=${idList}, 
+		                idTask=${task.id}, idSubTask=${subtaskList.id})}"
+									class="remove" th:attr="name=${subtaskList.title}"> <span
+										class="fa-stack"> <i class="glyphicon glyphicon-remove"></i>
+									</span>
+								</a></td>
+							</tr>
+
+						</th:block>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

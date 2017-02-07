@@ -14,13 +14,13 @@ public class User  implements Serializable {
     private Long id;
     
     @OneToOne
-    private ListName listTask;
+    private ListTask listTask;
 
-    public ListName getListTask() {
+    public ListTask getListTask() {
 		return listTask;
 	}
 
-	public void setListTask(ListName listTask) {
+	public void setListTask(ListTask listTask) {
 		this.listTask = listTask;
 	}
 

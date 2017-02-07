@@ -2,38 +2,49 @@
 	xmlns:layout="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-	<meta charset="UTF-8" />
+<meta charset="UTF-8" />
 </head>
 
-<div layout:fragment="content">
+<div class="listContainer" layout:fragment="content">
 	<div class="listTask">
 		<div class="list">
 			<table class="table table-striped" id="task_list">
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>Informações da lista</th>
+						<th>Excluir</th>
+					</tr>
+				</thead>
 				<tbody>
 					<tr data-th-each="list : ${listTask}">
 						<td class="name" data-th-text="${list.name}"></td>
-						
+
 						<td><a th:href="@{'/newList/create/{id}'(id=${list.id})}"
 							class="addTarefa" th:attr="name=${list.name}"> <span
 								class="fa-stack"> <i class="glyphicon glyphicon-edit"></i>
 							</span>
-							</a>
-						</td>
-						
-						<td><a th:href="@{'/list/delete/{id}'(id=${list.id})}" class="delete"
-							th:attr="name=${list.name}"> <span class="fa-stack">
-								<i class="glyphicon glyphicon-trash"></i>
+						</a></td>
+
+						<td><a th:href="@{'/list/delete/{id}'(id=${list.id})}"
+							class="delete" th:attr="name=${list.name}"> <span
+								class="fa-stack"> <i class="glyphicon glyphicon-trash"></i>
 							</span>
-							</a>
-						</td>
+						</a></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-		<div class="bem-vindo">
-			<h1>Bem vindo ao to do list!</h1>
-		</div>
+		
+
 	</div>
-	
+		<div class="remove-all-list">
+			<form action="/removeAllList" method="get" name="removeAllList"
+				id="removeAllList">
+				<button type="submit" id="submit" class="btn btn-primary">Remover
+					todas as listas</button>
+			</form>
+		</div>
+
 </div>
 </html>

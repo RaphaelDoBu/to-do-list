@@ -3,7 +3,7 @@
 	xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="UTF-8" />
-<title>Tarefa</title>
+<title>Editar</title>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet"
@@ -19,19 +19,23 @@
 
 <body class="edit">
 	<div>
-		<h3 class="edittask">Editar Tarefa</h3>
-		<h4>Nome da Lista:</h4>
-		<h4 class="name" data-th-text="${lista.name}"></h4>
-	</div>
-
-	<div>
-		<td><a th:href="@{'/newList/create/{id}' (id=${lista.id})}">
-				Voltar</a></td>
+		<div class="voltar">
+			<td><a th:href="@{'/newList/create/{id}' (id=${lista.id})}">
+					Voltar</a></td>
+		</div>
+		<div class="edittask">
+			<h3>Editar Tarefa</h3>
+		</div>
 	</div>
 
 	<div class="edit-task">
+		<div class="nameList">
+			<h4>Nome da Lista:</h4>
+			<h4 class="name" data-th-text="${lista.name}"></h4>
+		</div>
 		<form method="post" name="comment_form" id="form" action="/taskUpdate">
 			<div class="form">
+			<label>Nome:</label>
 				<textarea type="text" id="titulo" name="titulo"
 					th:text="${task.title}"></textarea>
 				<div class="select">
@@ -45,15 +49,20 @@
 						<option value="Final de semana">Final de semana</option>
 					</select>
 				</div>
-				<textarea rows="5" class="form-control" id="descricao"
-					name="descricao" th:text="${task.description}"></textarea>
+				<div>
+					<div class="labelDescricao">
+					<label>Descrição:</label>
+					</div>
+					<textarea rows="5" class="form-control" id="descricaoEdit"
+						name="descricao" th:text="${task.description}"></textarea>
+				</div>
 			</div>
 			<input type="hidden" id="task_id" rows="5" class="form-control"
 				name="task_id" th:value="${task.id}" /> <input type="hidden"
 				id="lista_id" rows="5" class="form-control" name="lista_id"
 				th:value="${lista.id}" />
 
-			<button type="submit" id="submit-add" class="btn btn-primary">Editar</button>
+			<button type="submit" id="submit-edit" class="btn btn-primary">Editar</button>
 		</form>
 
 	</div>

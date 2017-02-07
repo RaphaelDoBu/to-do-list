@@ -36,10 +36,10 @@
 
 					<div class="links">
 						<ul>
-							<li><a href="https://github.com/RaphaelDoBu/Lab02"
+							<li><a href="https://github.com/RaphaelDoBu/to-do-list"
 								target="_blanck">Github</a></li>
 							<li><a
-								href="https://drive.google.com/drive/folders/0B_vLfIWC1toKNlFvYWJBRzVVckE?usp=sharing"
+								href="https://www.youtube.com/watch?v=NL__4cb2OE0"
 								target="_blanck">Vídeo explicativo</a></li>
 						</ul>
 					</div>
@@ -48,41 +48,42 @@
 			</nav>
 		</header>
 	</div>
-	<div class="container">
-		<div class="filter-priority">
-			<form action="/list/filterPriority" method="get" name="priority"
-				id="priority">
-				<div class="priority">
-					<h4>Prioridade</h4>
-					<select name="filter" id="filter">
-						<option value="Alta">Alta</option>
-						<option value="Media">Média</option>
-						<option value="Baixa">Baixa</option>
-					</select>
-
-					<button type="submit" id="submit-filter" class="btn btn-primary">Filtrar</button>
-				</div>
-			</form>
+	<div class="filtros">
+		<div class="container">
+			<div class="filter-priority">
+				<form action="/list/filterPriority" method="get" name="priority"
+					id="priority">
+					<div class="priority">
+						<h4>Prioridade</h4>
+						<select name="filter" id="filter">
+							<option value="Alta">Alta</option>
+							<option value="Media">Média</option>
+							<option value="Baixa">Baixa</option>
+						</select>
+	
+						<button type="submit" id="submit-filter" class="btn btn-primary">Filtrar</button>
+					</div>
+				</form>
+			</div>
+	
+			<div class="filter-category">
+				<form action="/list/filterCategory" method="get" name="category"
+					id="category">
+					<div class="category">
+						<h4>Categoria</h4>
+						<select name="filter" id="filter">
+							<option value="Estudo">Estudo</option>
+							<option value="Casa">Casa</option>
+							<option value="Final de semana">Final de semana</option>
+						</select>
+	
+						<button type="submit" id="submit-filter" class="btn btn-primary">Filtrar</button>
+					</div>
+				</form>
+			</div>
 		</div>
-
-		<div class="filter-category">
-			<form action="/list/filterCategory" method="get" name="category"
-				id="category">
-				<div class="category">
-					<h4>Categoria</h4>
-					<select name="filter" id="filter">
-						<option value="Estudo">Estudo</option>
-						<option value="Casa">Casa</option>
-						<option value="Final de semana">Final de semana</option>
-					</select>
-
-					<button type="submit" id="submit-filter" class="btn btn-primary">Filtrar</button>
-				</div>
-			</form>
-		</div>
-
-
 	</div>
-	<div layout:fragment="content"></div>
+	<div layout:fragment="content">
+	</div>
 </body>
 </html>

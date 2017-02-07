@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html xmlns:layout="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="UTF-8" />
-<title>Tarefa</title>
+<title>Lista de Tarefas</title>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet"
@@ -14,17 +13,22 @@
 	rel='stylesheet' type='text/css' />
 <link rel="stylesheet" type="text/css" href="/css/normalizeCSS.css" />
 <link rel="stylesheet" type="text/css" href="/css/estilo.css" />
+<script type="text/javascript" src="static/app.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
 </head>
 
 <body class="addTask">
 	<div>
-		<h1 class="name-list" data-th-text="${lista.name}"></h1>
-	</div>
-
-	<div>
-		<td><a th:href="@{'/'}"> Voltar</a></td>
+		<div class="voltar">
+			<td><a th:href="@{'/'}"> Voltar</a></td>
+		</div>
+		<div id="titleListName">
+			<h1>
+				Lista:
+				<h1 data-th-text="${lista.name}"></h1>
+			</h1>
+		</div>
 	</div>
 
 	<div class="create-task">
@@ -41,7 +45,7 @@
 					<option value="Casa">Casa</option>
 					<option value="Final de semana">Final de semana</option>
 				</select>
-				<textarea rows="5" class="form-control" id="descricao"
+				<textarea rows="5" class="form-control" id="descricaoCreate"
 					name="descricao" placeholder="Descrição"></textarea>
 			</div>
 			<input type="hidden" id="lista_id" rows="5" class="form-control"
@@ -52,82 +56,167 @@
 
 	</div>
 	<div>
-	<div class="order">
-		<h1>Ordenar por:</h1>
-		<div class="order-name">
-			<div class="order-name-crescent">
-				<form action="/orderTaskNameCrescent" method="get" name="orderName"
-					id="orderName">
-					<input type="hidden" id="lista_id" rows="5" class="form-control"
-						name="lista_id" th:value="${lista.id}" />
-					<button type="submit" id="submit" class="btn btn-primary">Nome
-						Crescente</button>
-				</form>
+		<div class="level-priority">
+			<h4>Consulta de cores:</h4>
+			<h5 style="color: #E3372E">Prioridade Alta</h5>
+			<h5 style="color: #FCF64C">Prioridade Média</h5>
+			<h5 style="color: #69C08A">Prioridade Baixa</h5>
+		</div>
+		<div class="order">
+			<div class="name-order">
+				<h4>Ordenar por:</h4>
 			</div>
-			<div class="order-name-decrescent">
-				<form action="/orderTaskNameDecrescent" method="get"
-					name="orderName" id="orderName">
-					<input type="hidden" id="lista_id" rows="5" class="form-control"
-						name="lista_id" th:value="${lista.id}" />
-					<button type="submit" id="submit" class="btn btn-primary">Nome
-						Decrescente</button>
-				</form>
+			<div class="order-buttons">
+				<div class="order-name">
+					<div class="order-name-crescent">
+						<form action="/orderTaskNameCrescent" method="get"
+							name="orderName" id="orderName">
+							<input type="hidden" id="lista_id" rows="5" class="form-control"
+								name="lista_id" th:value="${lista.id}" />
+							<button type="submit" id="submit_order" class="btn btn-primary">Nome
+								Crescente</button>
+						</form>
+					</div>
+					<div class="order-name-decrescent">
+						<form action="/orderTaskNameDecrescent" method="get"
+							name="orderName" id="orderName">
+							<input type="hidden" id="lista_id" rows="5" class="form-control"
+								name="lista_id" th:value="${lista.id}" />
+							<button type="submit" id="submit_order" class="btn btn-primary">Nome
+								Decrescente</button>
+						</form>
+					</div>
+				</div>
+				<div class="order-priority">
+					<div class="order-priority-high">
+						<form action="/orderPriorityHigh" method="get"
+							name="orderPriority" id="orderPriority">
+							<input type="hidden" id="lista_id" rows="5" class="form-control"
+								name="lista_id" th:value="${lista.id}" />
+							<button type="submit" id="submit_order" class="btn btn-primary">Prioridade
+								Alta</button>
+						</form>
+					</div>
+					<div class="order-priority-low">
+						<form action="/orderPriorityLow" method="get" name="orderPriority"
+							id="orderPriority">
+							<input type="hidden" id="lista_id" rows="5" class="form-control"
+								name="lista_id" th:value="${lista.id}" />
+							<button type="submit" id="submit_order" class="btn btn-primary">Prioridade
+								Baixa</button>
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div class="order-priority">
-			<div class="order-priority-high">
-				<form action="/orderPriorityHigh" method="get" name="orderPriority"
-					id="orderPriority">
-					<input type="hidden" id="lista_id" rows="5" class="form-control"
-						name="lista_id" th:value="${lista.id}" />
-					<button type="submit" id="submit_order" class="btn btn-primary">Prioridade
-						Alta</button>
-				</form>
-			</div>
-			<div class="order-priority-low">
-				<form action="/orderPriorityLow" method="get" name="orderPriority"
-					id="orderPriority">
-					<input type="hidden" id="lista_id" rows="5" class="form-control"
-						name="lista_id" th:value="${lista.id}" />
-					<button type="submit" id="submit_order" class="btn btn-primary">Prioridade
-						Baixa</button>
-				</form>
-			</div>
-		</div>
-	</div>
 	</div>
 	<div class="tasktodo">
+		<h3 class="nameTask">
+			Tarefas para fazer:
+			<h3 class="name-list" data-th-text="${listaSize}"></h3>
+		</h3>
 		<div class="task-to-do">
 			<table class="table table-striped" id="task-to-do">
-				<tbody>
-					<tr data-th-each="list : ${nameTask}">
-
-						<td class="titulo" data-th-text="${list.title}"></td>
-						<td class="descricao" data-th-text="${list.description}"></td>
-						<td class="prioridade" data-th-text="${list.priority}"></td>
-						<td class="categoria" data-th-text="${list.category}"></td>
-						<td><a
-							th:href="@{'/list/{id}/taskCompleted/{idTask}'(id=${lista.id}, 
-						idTask=${list.id})}"
-							class="completed" th:attr="name=${list.title}"> <span
-								class="fa-stack"> <i class="glyphicon glyphicon-ok"></i>
-							</span>
-						</a></td>
-						<td><a
-							th:href="@{'/list/{id}/edit/task/{idTask}'(id=${lista.id}, 
-		                idTask=${list.id})}"
-							class="edit" th:attr="name=${list.title}"> <span
-								class="fa-stack"> <i class="glyphicon glyphicon-edit"></i>
-							</span>
-						</a> </td>
-						<td><a
-							th:href="@{'/list/{id}/remove/task/{idTask}'(id=${lista.id}, 
-		                idTask=${list.id})}"
-							class="remove" th:attr="name=${list.title}"> <span
-								class="fa-stack"> <i class="glyphicon glyphicon-remove"></i>
-							</span>
-						</a></td>
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>Descrição</th>
+						<th>Concluido</th>
+						<th>Editar</th>
+						<th>Excluir</th>
 					</tr>
+				</thead>
+				<tbody>
+					<th:block data-th-each="list : ${nameTask}">
+						<tr th:if="${list.priority} == 'Alta'"
+							style="background-color: #E3372E">
+							<td class="titulo" data-th-text="${list.title}"></td>
+							<td class="completed-detalhes"><a
+								th:href="@{'/list/{id}/taskToDo/{idTask}/detalhesTask'
+						(id=${lista.id}, idTask=${list.id})}"
+								class="completed-detalhes" th:attr="name=${list.title}">Detalhes
+							</a></td>
+							<td><a
+								th:href="@{'/list/{id}/taskForCompleted/{idTask}'(id=${lista.id}, 
+						idTask=${list.id})}"
+								class="completed" th:attr="name=${list.title}"> <span
+									class="fa-stack"> <i class="glyphicon glyphicon-ok"></i>
+								</span>
+							</a></td>
+							<td><a
+								th:href="@{'/list/{id}/edit/task/{idTask}'(id=${lista.id}, 
+		                idTask=${list.id})}"
+								class="edit" th:attr="name=${list.title}"> <span
+									class="fa-stack"> <i class="glyphicon glyphicon-edit"></i>
+								</span>
+							</a></td>
+							<td><a
+								th:href="@{'/list/{id}/remove/taskToDo/{idTask}'(id=${lista.id}, 
+		                idTask=${list.id})}"
+								class="remove" th:attr="name=${list.title}"> <span
+									class="fa-stack"> <i class="glyphicon glyphicon-remove"></i>
+								</span>
+							</a></td>
+						</tr>
+						<tr th:if="${list.priority} == 'Media'"
+							style="background-color: #FCF64C">
+							<td class="titulo" data-th-text="${list.title}"></td>
+							<td class="completed-detalhes"><a
+								th:href="@{'/list/{id}/taskToDo/{idTask}/detalhesTask'
+						(id=${lista.id}, idTask=${list.id})}"
+								class="completed" th:attr="name=${list.title}">Detalhes </a></td>
+							<td><a
+								th:href="@{'/list/{id}/taskForCompleted/{idTask}'(id=${lista.id}, 
+						idTask=${list.id})}"
+								class="completed" th:attr="name=${list.title}"> <span
+									class="fa-stack"> <i class="glyphicon glyphicon-ok"></i>
+								</span>
+							</a></td>
+							<td><a
+								th:href="@{'/list/{id}/edit/task/{idTask}'(id=${lista.id}, 
+		                idTask=${list.id})}"
+								class="edit" th:attr="name=${list.title}"> <span
+									class="fa-stack"> <i class="glyphicon glyphicon-edit"></i>
+								</span>
+							</a></td>
+							<td><a
+								th:href="@{'/list/{id}/remove/taskToDo/{idTask}'(id=${lista.id}, 
+		                idTask=${list.id})}"
+								class="remove" th:attr="name=${list.title}"> <span
+									class="fa-stack"> <i class="glyphicon glyphicon-remove"></i>
+								</span>
+							</a></td>
+						</tr>
+						<tr th:if="${list.priority} == 'Baixa'"
+							style="background-color: #69C08A">
+							<td class="titulo" data-th-text="${list.title}"></td>
+							<td class="completed-detalhes"><a
+								th:href="@{'/list/{id}/taskToDo/{idTask}/detalhesTask'
+						(id=${lista.id}, idTask=${list.id})}"
+								class="completed" th:attr="name=${list.title}">Detalhes </a></td>
+							<td><a
+								th:href="@{'/list/{id}/taskForCompleted/{idTask}'(id=${lista.id}, 
+						idTask=${list.id})}"
+								class="completed" th:attr="name=${list.title}"> <span
+									class="fa-stack"> <i class="glyphicon glyphicon-ok"></i>
+								</span>
+							</a></td>
+							<td><a
+								th:href="@{'/list/{id}/edit/task/{idTask}'(id=${lista.id}, 
+		                idTask=${list.id})}"
+								class="edit" th:attr="name=${list.title}"> <span
+									class="fa-stack"> <i class="glyphicon glyphicon-edit"></i>
+								</span>
+							</a></td>
+							<td><a
+								th:href="@{'/list/{id}/remove/taskToDo/{idTask}'(id=${lista.id}, 
+		                idTask=${list.id})}"
+								class="remove" th:attr="name=${list.title}"> <span
+									class="fa-stack"> <i class="glyphicon glyphicon-remove"></i>
+								</span>
+							</a></td>
+						</tr>
+					</th:block>
 				</tbody>
 			</table>
 		</div>
@@ -141,18 +230,112 @@
 			</form>
 		</div>
 	</div>
-	<div class="taskcompleted">
+	<div class="taskcomplet">
+		<h3 class="nameTask">
+			Tarefas completas:
+			<h3 class="name-list" data-th-text="${taskCompletedSize}"></h3>
+		</h3>
 		<div class="task-completed">
 			<table class="table table-striped" id="task-completed">
-				<tbody>
-					<tr data-th-each="list : ${taskComplet}">
-
-						<td class="titulo" data-th-text="${list.title}"></td>
-						<td class="descricao" data-th-text="${list.description}"></td>
-						<td class="prioridade" data-th-text="${list.priority}"></td>
-						<td class="categoria" data-th-text="${list.category}"></td>
-
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>Descrição</th>
+						<th>Desfazer</th>
+						<th>Editar</th>
+						<th>Excluir</th>
 					</tr>
+				</thead>
+				<tbody>
+					<th:block data-th-each="list : ${taskComplet}">
+						<tr th:if="${list.priority} == 'Alta'"
+							style="background-color: #E3372E">
+							<td class="titulo" data-th-text="${list.title}"></td>
+							<td class="completed-detalhes"><a
+								th:href="@{'/list/{id}/taskCompleted/{idTask}/detalhesTask'
+						(id=${lista.id}, idTask=${list.id})}"
+								class="completed" th:attr="name=${list.title}">Detalhes </a></td>
+							<td><a
+								th:href="@{'/list/{id}/taskForToDo/{idTask}'(id=${lista.id}, 
+						idTask=${list.id})}"
+								class="completed" th:attr="name=${list.title}"> <span
+									class="fa-stack"> <i class="glyphicon glyphicon-ok"></i>
+								</span>
+							</a></td>
+							<td><a
+								th:href="@{'/list/{id}/edit/task/{idTask}'(id=${lista.id}, 
+		                idTask=${list.id})}"
+								class="edit" th:attr="name=${list.title}"> <span
+									class="fa-stack"> <i class="glyphicon glyphicon-edit"></i>
+								</span>
+							</a></td>
+							<td><a
+								th:href="@{'/list/{id}/remove/taskCompleted/{idTask}'(id=${lista.id}, 
+		                idTask=${list.id})}"
+								class="remove" th:attr="name=${list.title}"> <span
+									class="fa-stack"> <i class="glyphicon glyphicon-remove"></i>
+								</span>
+							</a></td>
+						</tr>
+						<tr th:if="${list.priority} == 'Media'"
+							style="background-color: #FCF64C">
+							<td class="titulo" data-th-text="${list.title}"></td>
+							<td class="completed-detalhes"><a
+								th:href="@{'/list/{id}/taskCompleted/{idTask}/detalhesTask'
+						(id=${lista.id}, idTask=${list.id})}"
+								class="completed" th:attr="name=${list.title}">Detalhes </a></td>
+							<td><a
+								th:href="@{'/list/{id}/taskForToDo/{idTask}'(id=${lista.id}, 
+						idTask=${list.id})}"
+								class="completed" th:attr="name=${list.title}"> <span
+									class="fa-stack"> <i class="glyphicon glyphicon-ok"></i>
+								</span>
+							</a></td>
+							<td><a
+								th:href="@{'/list/{id}/edit/task/{idTask}'(id=${lista.id}, 
+		                idTask=${list.id})}"
+								class="edit" th:attr="name=${list.title}"> <span
+									class="fa-stack"> <i class="glyphicon glyphicon-edit"></i>
+								</span>
+							</a></td>
+							<td><a
+								th:href="@{'/list/{id}/remove/taskCompleted/{idTask}'(id=${lista.id}, 
+		                idTask=${list.id})}"
+								class="remove" th:attr="name=${list.title}"> <span
+									class="fa-stack"> <i class="glyphicon glyphicon-remove"></i>
+								</span>
+							</a></td>
+						</tr>
+						<tr th:if="${list.priority} == 'Baixa'"
+							style="background-color: #69C08A">
+							<td class="titulo" data-th-text="${list.title}"></td>
+							<td class="completed-detalhes"><a
+								th:href="@{'/list/{id}/taskCompleted/{idTask}/detalhesTask'
+						(id=${lista.id}, idTask=${list.id})}"
+								class="completed" th:attr="name=${list.title}">Detalhes </a></td>
+							<td><a
+								th:href="@{'/list/{id}/taskForToDo/{idTask}'(id=${lista.id}, 
+						idTask=${list.id})}"
+								class="completed" th:attr="name=${list.title}"> <span
+									class="fa-stack"> <i class="glyphicon glyphicon-ok"></i>
+								</span>
+							</a></td>
+							<td><a
+								th:href="@{'/list/{id}/edit/task/{idTask}'(id=${lista.id}, 
+		                idTask=${list.id})}"
+								class="edit" th:attr="name=${list.title}"> <span
+									class="fa-stack"> <i class="glyphicon glyphicon-edit"></i>
+								</span>
+							</a></td>
+							<td><a
+								th:href="@{'/list/{id}/remove/taskCompleted/{idTask}'(id=${lista.id}, 
+		                idTask=${list.id})}"
+								class="remove" th:attr="name=${list.title}"> <span
+									class="fa-stack"> <i class="glyphicon glyphicon-remove"></i>
+								</span>
+							</a></td>
+						</tr>
+					</th:block>
 				</tbody>
 			</table>
 		</div>
