@@ -19,38 +19,6 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script
 	src="http://files.codepedia.info/uploads/iScripts/html2canvas.js"></script>
-<script th:inline="javascript">
-	$(document).ready(
-			function() {
-
-				var element = $("#html-content-holder");
-				var getCanvas;
-
-				$("#btn-Preview-Image").on('click', function() {
-					html2canvas(element, {
-						onrendered : function(canvas) {
-							$("#previewImage").append(canvas);
-							getCanvas = canvas;
-						},
-					});
-				});
-				$("#btn-Convert-Html2Image")
-						.on(
-								'click',
-								function() {
-
-									var imgageData = getCanvas
-											.toDataURL("image/png");
-									var newData = imgageData.replace(
-											/^data:image\/png/,
-											"data:application/octet-stream");
-									$("#btn-Convert-Html2Image").attr(
-											"download", "lista-de-tarefas.jpeg")
-											.attr("href", newData);
-								});
-
-			});
-</script>
 
 </head>
 
@@ -389,11 +357,6 @@
 		</div>
 	</div>
 
-	<div class="downloadImage">
-		<a id="btn-Preview-Image" href="#home">Preview imagem</a>
-		<a id="btn-Convert-Html2Image" href="#">Download</a> <a name="home"></a>
-		<div id="previewImage"></div>
-	</div>
 </body>
 
 </html>
