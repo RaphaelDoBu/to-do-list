@@ -13,49 +13,38 @@
 	rel='stylesheet' type='text/css' />
 <link rel="stylesheet" type="text/css" href="/css/normalizeCSS.css" />
 <link rel="stylesheet" type="text/css" href="/css/estilo.css" />
+<script type="text/javascript" src="static/app.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script
 	src="http://files.codepedia.info/uploads/iScripts/html2canvas.js"></script>
-<script th:inline="javascript">
-	$(document).ready(
-			function() {
+<script type="text/javascript"
+	src="//cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-git.js"></script>
+<script>
+	$(function() {
+		var doc = new jsPDF();
+		var specialElementHandlers = {
+			'#editor' : function(element, renderer) {
+				return true;
+			}
+		};
 
-				var element = $("#html-content-holder");
-				var getCanvas;
-
-				$("#btn-Preview-Image").on('click', function() {
-					html2canvas(element, {
-						onrendered : function(canvas) {
-							$("#previewImage").append(canvas);
-							getCanvas = canvas;
-						},
-					});
-				});
-				$("#btn-Convert-Html2Image")
-						.on(
-								'click',
-								function() {
-
-									var imgageData = getCanvas
-											.toDataURL("image/png");
-									var newData = imgageData.replace(
-											/^data:image\/png/,
-											"data:application/octet-stream");
-									$("#btn-Convert-Html2Image").attr(
-											"download", "lista-de-tarefas.jpeg")
-											.attr("href", newData);
-								});
-
+		$('#cmd').click(function() {
+			doc.fromHTML($('#content').html(), 15, 15, {
+				'width' : 170,
+				'elementHandlers' : specialElementHandlers
 			});
+			doc.save('sample-file.pdf');
+		});
+	});
 </script>
 
 </head>
 
 <body class="addTask">
-
 	<div>
 		<div class="voltar">
 			<td><a th:href="@{'/'}"> Voltar</a></td>
@@ -67,6 +56,7 @@
 			</h1>
 		</div>
 	</div>
+
 	<div class="create-task">
 		<form method="post" name="comment_form" id="form"
 			action="/list/newTask">
@@ -87,12 +77,11 @@
 			<input type="hidden" id="lista_id" rows="5" class="form-control"
 				name="lista_id" th:value="${lista.id}" />
 
-			<button type="submit" id="submit-addCreate" class="btn btn-primary">Submit</button>
+			<button type="submit" id="submit-add" class="btn btn-primary">Submit</button>
 		</form>
 
 	</div>
 	<div>
-
 		<div class="level-priority">
 			<h4>Consulta de cores:</h4>
 			<h5 style="color: #E3372E">Prioridade Alta</h5>
@@ -101,7 +90,7 @@
 		</div>
 		<div class="order">
 			<div class="name-order">
-				<h4 class="">Ordenar por:</h4>
+				<h4>Ordenar por:</h4>
 			</div>
 			<div class="order-buttons">
 				<div class="order-name">
@@ -119,7 +108,7 @@
 							name="orderName" id="orderName">
 							<input type="hidden" id="lista_id" rows="5" class="form-control"
 								name="lista_id" th:value="${lista.id}" />
-							<button type="" id="submit_order" class="btn btn-primary">Nome
+							<button type="submit" id="submit_order" class="btn btn-primary">Nome
 								Decrescente</button>
 						</form>
 					</div>
@@ -147,7 +136,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="html-content-holder">
+	<div id="content">
 		<div class="tasktodo">
 			<h3 class="nameTask">
 				Tarefas para fazer:
@@ -388,12 +377,9 @@
 			</div>
 		</div>
 	</div>
+	<div id="editor"></div>
+	<button id="cmd">generate PDF</button>
 
-	<div class="downloadImage">
-		<a id="btn-Preview-Image" href="#home">Preview imagem</a>
-		<a id="btn-Convert-Html2Image" href="#">Download</a> <a name="home"></a>
-		<div id="previewImage"></div>
-	</div>
 </body>
 
 </html>

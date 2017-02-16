@@ -90,5 +90,6 @@ public class ListTaskController {
 		taskServiceImpl.removeAllList(listTask);
 		return new ModelAndView("redirect:");
 	}
+	
 
 }

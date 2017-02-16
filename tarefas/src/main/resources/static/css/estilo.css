@@ -4,7 +4,7 @@ body {
 	height: 700px;
 	margin: 0 auto;
 	overflow: auto;
-	background: #D4ECFB;;
+	background: #D4ECFB;
 }
 
 h1.top {
@@ -52,11 +52,10 @@ nav .menu {
 	margin: 0 auto;
 }
 
-.remove-all-list{
+.remove-all-list {
 	width: 960px;
 	height: 40px;
 	text-align: center;
-
 }
 
 .bem-vindo h1 {
@@ -87,12 +86,12 @@ ul li {
 	padding-right: 14px;
 }
 
-.links li a{
+.links li a {
 	font-size: 16px;
 	color: #FFFFFF;
 }
 
-.links a:hover{
+.links a:hover {
 	text-decoration: none;
 	color: #FFFFFF;
 	font-size: 17px;
@@ -176,7 +175,7 @@ h4, h3, #titleListName h1 {
 
 .create-task {
 	width: 450px;
-	height: 200px;
+	height: 150px;
 	padding-top: 10px;
 	padding-left: 25px;
 	float: left;
@@ -188,7 +187,7 @@ body.edit, body.detalhes {
 	overflow: auto;
 }
 
-body.addTask {
+body.addTask, #html-content-holder {
 	width: 960px;
 	margin: 0 auto;
 	overflow: auto;
@@ -217,13 +216,18 @@ body.addTask {
 	margin-left: 3px;
 }
 
+#submit-addCreate {
+	width: 87%;
+	margin-top: 50px;
+	margin-left: 3px;
+}
 
-.completed-detalhes a{
+.completed-detalhes a {
 	color: #FFFFFF;
 	font-size: 15px;
 }
 
-.completed-detalhes a:hover{
+.completed-detalhes a:hover {
 	list-style: none;
 	text-decoration: none;
 	color: #FFFFFF;
@@ -237,23 +241,30 @@ h3.nameTask {
 }
 
 .order {
-	width: 410px;
-	height: 90px;
+	width: 620px;
+	height: 40px;
 	float: right;
 	margin-top: 10px;
 	margin-left: 40px;
 }
 
 .order-buttons {
-	width: 300px;
-	height: 100px;
+	width: 500px;
+	height: 40px;
 	float: right;
+	display: inline;
 }
 
 .name-order {
 	width: 105px;
-	height: 40px;
+	height: 20px;
 	float: left;
+	padding-top: 2px;
+	padding-left: 21px;
+}
+
+.name-order h4{
+	font-size: 15px;
 }
 
 .level-priority {
@@ -272,21 +283,40 @@ h3.nameTask {
 	padding-right: 5px;
 }
 
-.order-name-crescent, .order-priority-high {
+.order-name-crescent {
 	width: 110px;
 	float: left;
 	margin-bottom: 10px;
 	margin-right: 10px;
 }
 
-.order-name-decrescent, .order-priority-low {
-	width: 120px;
+.order-priority-high{
+	width: 110px;
 	float: left;
 	margin-bottom: 10px;
 }
 
+.order-name-decrescent, .order-priority-low {
+	width: 120px;
+	float: left;
+	margin-bottom: 10px;
+	margin-right: 10px;
+}
+
 #submit_order {
 	padding: 3px 3px;
+	display: inline;
+	background: transparent;
+	text-decoration: none;
+	border: none;
+	cursor: pointer;
+	color: #00AEED;
+	font-size:14px;
+}
+
+#submit_order:hover {
+	color:#337ab7;
+	font-size:15px;
 }
 
 #submit-filter {
@@ -296,7 +326,6 @@ h3.nameTask {
 .tasktodo {
 	width: 450px;
 	float: left;
-	padding-top: 30px;
 	padding-left: 25px;
 }
 
@@ -307,7 +336,7 @@ h3.nameTask {
 
 .task-to-do {
 	width: 430px;
-	min-height: 300px;
+	min-height: 290px;
 	float: left;
 	overflow: auto;
 	margin-left: -10px;
@@ -323,7 +352,7 @@ h3.nameTask {
 
 .task-completed {
 	width: 430px;
-	min-height: 300px;
+	min-height: 290px;
 	float: right;
 	overflow: auto;
 	margin-right: 10px;
@@ -337,7 +366,7 @@ h3.nameTask {
 	float: right;
 }
 
-.taskcomplet{
+.taskcomplet {
 	width: 430px;
 	float: right;
 }
@@ -363,9 +392,17 @@ h3.nameTask {
 	padding-left: 30%;
 }
 
-#descricaoCreate {
+#descricaoCreateDetails {
 	width: 370px;
 	height: 131px;
+	resize: none;
+	margin-top: 5px;
+	margin-left: 4px;
+}
+
+#descricaoCreate {
+	width: 370px;
+	height: 50px;
 	resize: none;
 	margin-top: 5px;
 	margin-left: 4px;
@@ -450,7 +487,8 @@ h3.nameTask {
 .taskCompleted-subTask {
 	width: 300px;
 }
-.nameTask{
+
+.nameTask {
 	text-align: center;
 }
 
@@ -459,4 +497,36 @@ h3.nameTask {
 	margin-left: 320px;
 	margin-top: 20px;
 	float: right;
+}
+
+#html-content-holder {
+	background: #D4ECFB;
+}
+
+h4.preview{
+	text-align: center;
+	color: red;
+}
+
+#btn-Preview-Image{
+	text-decoration: none;
+	color: #00A54E;
+	font-size: 15px;
+}
+
+#btn-Preview-Image:hover{
+	color: #00A54E;
+	font-size: 16px;
+}
+
+#btn-Convert-Html2Image{
+	float: right;
+	text-decoration: none;
+	color: #00A54E;
+	font-size: 15px;
+}
+
+#btn-Convert-Html2Image:hover{
+	color: #00A54E;
+	font-size: 16px;
 }

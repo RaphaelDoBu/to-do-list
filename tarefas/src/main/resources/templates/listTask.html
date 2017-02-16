@@ -4,6 +4,25 @@
 <head>
 <meta charset="UTF-8" />
 </head>
+<script>
+	$(function() {
+		$("#btnSave").click(function() {
+			html2canvas($("#widget"), {
+				onrendered : function(canvas) {
+					theCanvas = canvas;
+					document.body.appendChild(canvas);
+
+					// Convert and download as image 
+					Canvas2Image.saveAsPNG(canvas);
+					$("#img-out").append(canvas);
+					// Clean up 
+					//document.body.removeChild(canvas);
+				}
+			});
+		});
+	});
+</script>
+
 
 <div class="listContainer" layout:fragment="content">
 	<div class="listTask">
@@ -35,16 +54,16 @@
 				</tbody>
 			</table>
 		</div>
-		
+
 
 	</div>
-		<div class="remove-all-list">
-			<form action="/removeAllList" method="get" name="removeAllList"
-				id="removeAllList">
-				<button type="submit" id="submit" class="btn btn-primary">Remover
-					todas as listas</button>
-			</form>
-		</div>
+	<div class="remove-all-list">
+		<form action="/removeAllList" method="get" name="removeAllList"
+			id="removeAllList">
+			<button type="submit" id="submit" class="btn btn-primary">Remover
+				todas as listas</button>
+		</form>
+	</div>
 
 </div>
 </html>

@@ -1,9 +1,12 @@
 package ufcg.edu.br.services;
 
+import java.net.URL;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ufcg.edu.br.domain.ListTask;
+import ufcg.edu.br.domain.Task;
 import ufcg.edu.br.repositories.ListTaskRepository;
 
 @Service("listTaskService")
